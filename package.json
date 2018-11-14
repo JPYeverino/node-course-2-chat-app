@@ -9,7 +9,22 @@
     "postinstall": "npm run build-ts",
     "start": "ts-node src/server/server.ts || npm run serve",
     "serve": "node build/server/server.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test-watch": "nodemon --exec npm test"
+  },
+  "jest": {
+    "verbose": true,
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx)"
+    ]
   },
   "engines": {
     "node": "9.3.0"
