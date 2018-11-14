@@ -1,14 +1,27 @@
 import * as path from 'path';
+import * as http from 'http';
 import * as express from 'express';
+import * as socketIO from 'socket.io';
 
 const publicPath = path.join(__dirname, '/../../public');
 const port = process.env.PORT || 3000;
 
 const app: express.Application = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 
 
 app.use(express.static(publicPath)); //It gets the static files.
 
-app.listen(port, () => {
+io.on('connection', socket => {
+  console.log('New user connected');
+  
+  socket.on('disconnect', () => {
+    console.log("User was disconnected");
+  });
+});
+
+
+server.listen(port, () => {
   console.log(`Server is up on port ${port}`);
 });
