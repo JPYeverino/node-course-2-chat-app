@@ -13,7 +13,7 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 
-app.use(express.static(publicPath)); //It gets the static files.
+// app.use(express.static(publicPath)); //It gets the static files.
 
 io.on('connection', socket => {
   console.log('New user connected');
@@ -26,7 +26,7 @@ io.on('connection', socket => {
     io.emit('newMessage', generateMessage(message.from, message.text));
     callback('This is from de server');
   });
-  
+
   socket.on('disconnect', () => {
     console.log("User was disconnected");
   });
