@@ -13,7 +13,7 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 
-// app.use(express.static(publicPath)); //It gets the static files.
+app.use(express.static(publicPath)); //It gets the static files.
 
 io.on('connection', socket => {
   console.log('New user connected');
