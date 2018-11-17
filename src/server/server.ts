@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as http from 'http';
 import * as express from 'express';
 import * as socketIO from 'socket.io';
-import generateMessage from './utils/message'
+import { generateMessage, generateLocationMessage } from './utils/message'
 import { callbackify } from 'util';
 
 const publicPath = path.join(__dirname, '/../../public');
@@ -26,6 +26,13 @@ io.on('connection', socket => {
     io.emit('newMessage', generateMessage(message.from, message.text));
     callback('This is from de server');
   });
+
+  socket.on('createLocationMessage', coords => {
+    console.log('createLocationMessage', coords);
+    io.emit('newLocationMessage', generateLocationMessage('Admin',coords.latitude, coords.longitude));
+  });
+
+  
 
   socket.on('disconnect', () => {
     console.log("User was disconnected");
