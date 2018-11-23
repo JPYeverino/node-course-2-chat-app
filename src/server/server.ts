@@ -2,7 +2,9 @@ import * as path from 'path';
 import * as http from 'http';
 import * as express from 'express';
 import * as socketIO from 'socket.io';
-import { generateMessage, generateLocationMessage } from './utils/message'
+import * as moment from 'moment';
+
+import { generateMessage, generateLocationMessage } from './utils/message';
 import { callbackify } from 'util';
 
 const publicPath = path.join(__dirname, '/../../public');
@@ -24,7 +26,7 @@ io.on('connection', socket => {
   socket.on('createMessage', (message, callback) => {
     console.log('createMessage', message);
     io.emit('newMessage', generateMessage(message.from, message.text));
-    callback('This is from de server');
+    callback();
   });
 
   socket.on('createLocationMessage', coords => {

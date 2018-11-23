@@ -1,21 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
-  <h1>Welcome to the chat app</h1>
-  <ol id="messages"></ol>
-  <form id="message-form" action="">
-    <input type="text" name="message" id="message-text" placeholder="Message"/>
-    <button>Send</button>
-  </form>
-  <button id="send-location">Send send-location</button>
-  
-</div>
-<script src="./js/main-bundle.js"></script>
+
+  <div class="wrapper">
+    <div class=" box sidebar">
+      <h3>People</h3>
+      <div id="people"></div>
+    </div>
+    <div class="box content">
+      <div id="messages-box">
+        <ol id="messages" class="chat__messages"></ol>
+      </div>
+
+
+      <div class="chat__footer">
+        <form id="message-form" action="">
+          <input type="text" name="message" id="message-text" placeholder="Message" autofocus autocomplete="off" />
+          <button id="send-message" class="button">Send</button>
+        </form>
+        <button id="send-location" class="button">Send send-location</button>
+      </div>
+      <!-- end .chat__footer -->
+    </div>
+    <!-- end .content -->
+  </div>
+  <!-- end .wrapper -->
+
+  </div>
+  <template id="message-template">
+    <li class="message">
+      <div class="message__title">
+        <h4 class="mHeader"></h4>
+        <span class="createdAt"></span>
+        <p class="text"></p>
+      </div>
+     
+    </li>
+  </template>
+
+  <template id="location-template">
+    <li class="message">
+      <div class="message__title">
+        <h4 class="mHeader"></h4>
+        <span class="createdAt"></span>
+        <p>
+          <a class="location" target="_blank">My current location</a>
+        </p>
+      </div>
+     
+    </li>
+  </template>
+  <script src="js/main-bundle.js"></script>
 </body>
+
 </html>
